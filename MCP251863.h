@@ -18,6 +18,19 @@ enum MCP251873_command_t : uint {
     WRITE_CRC = 0b1010;
     WRITE_SAFE = 0b1100;
 };
+
+enum MCP251873_opMode_t : uint {
+    CONFIG = 0,
+    NORM_CANFD = 1,
+    NORM_CAN2 = 2, 
+    SLEEP = 3,
+    LOW_P = 4,
+    LISTEN_ONLY = 5,
+    RESTR_OP = 6,
+    INT_LOOP = 7,
+    EXT_LOOP = 8
+};
+
 enum MCP251873_regAddr_t : uint {
     OSC = 0xE04,
     CRC = 0xE08,
@@ -50,7 +63,7 @@ enum MCP251873_regAddr_t : uint {
     C1FLTCONx = 1D0, // 4 addresses between each
     C1FLTOBJx = 0x1F8, // 8 addresses between each
     C1MASKx = 0x1F4 // 8 addresses between each
-}
+};
 
 //Debug methods
 
@@ -67,9 +80,13 @@ class MCP251863 {
         MCP251863_readMode_t readMode;
 
         MCP251863(spi_int_t* spi_i);
+        int init();
         int reset();
 
-        int configure_FIFO();
+        int initFIFO();
+        int initFilter()
+
+        int setOpMode(MCP251863_OpMode_t opMode);
 
 }
 
