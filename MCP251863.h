@@ -10,7 +10,7 @@ const uint MCP251863_BAUD_RATE = 160000000;
 //Enums for various device modes/configs
 enum MCP251863_writeMode_t { WRITE_NORM = 0, WRITE_CRC = 1, WRITE_SAFE = 2`};
 enum MCP251863_readMode_t { READ_NORM = 0, READ_CRC = 1};
-enum MCP251873_command_t : uint { 
+enum MCP251873_command_t : uint8_t { 
     RESET = 0b000;
     READ = 0b0011;
     WRITE = 0b0010;
@@ -71,15 +71,15 @@ enum MCP251873_regAddr_t : uint {
 class MCP251863 {
     private:
         spi_inst_t* spi;
-
-        uint readAddr(uint addr);
-        uint writeAddr(uint addr, uint data);
+        uint CSPin;
+        uint setCS(uint state);
+        uint readAddr(uint16_t startAddr, uint8_t* dst, size_t len);
+        uint writeAddr(uint16_t startAddr, uint8_t* data, size_t len);
 
     public:
         MCP251863_writeMode_t writeMode;
         MCP251863_readMode_t readMode;
-
-        MCP251863(spi_int_t* spi_i);
+        MCP251863(spi_int_t* spi, uint CSPin);
         int init();
         int reset();
 
