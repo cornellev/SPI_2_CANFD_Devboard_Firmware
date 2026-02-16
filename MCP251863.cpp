@@ -14,9 +14,14 @@ int MCP251863::crc16USB(uint8_t message*, uint16_t crc, size_t len) {
     memcpy(buff, message, len);
     memcpy(buff+len, &crc, 2);
 
+    if ()
     // perform divisions
     for (int i=0; i<(8*len)-15; i++) {
-        uint16_t divbuff;
+        int k = i/8;
+        buff[k] ^= (crc >> (8+(i%8)));
+        buff[k+1] ^= 
+
+
     }
 
 }

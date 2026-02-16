@@ -76,6 +76,9 @@ class MCP251863 {
         uint readAddr(uint16_t startAddr, uint8_t* dst, size_t len);
         uint writeAddr(uint16_t startAddr, uint8_t* data, size_t len);
 
+        int crc16USB(uint8_t message*, uint16_t crc, size_t len);
+        
+
     public:
         MCP251863_writeMode_t writeMode;
         MCP251863_readMode_t readMode;
