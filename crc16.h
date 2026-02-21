@@ -1,8 +1,6 @@
 #ifndef CRC16_H
 #define CRC16_H
 
-//CRC16 Polynomial
-#define CRC16_POLY 0x8005
 
 // For our contexts, the crc is initialized for 0xFFFF
 // https://www.sunshine2k.de/articles/coding/crc/understanding_crc.html 
@@ -45,6 +43,8 @@ uint16_t CRC16_USB_RLUT[] = {
     0x4400, 0x84C1, 0x8581, 0x4540,   0x8701, 0x47C0, 0x4680, 0x8641,
     0x8201, 0x42C0, 0x4380, 0x8341,   0x4100, 0x81C1, 0x8081, 0x4040
 };
+
+
 
 uint16_t CRC16_USB(uint8_t *data, size_t len);
 

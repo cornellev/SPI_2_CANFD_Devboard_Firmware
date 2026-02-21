@@ -8,9 +8,9 @@
 const uint MCP251863_BAUD_RATE = 160000000;
 
 //Enums for various device modes/configs
-enum MCP251863_writeMode_t { WRITE_NORM = 0, WRITE_CRC = 1, WRITE_SAFE = 2`};
-enum MCP251863_readMode_t { READ_NORM = 0, READ_CRC = 1};
-enum MCP251873_command_t : uint8_t { 
+enum class MCP251863_writeMode_t { WRITE_NORMAL = 0, WRITE_CRC = 1, WRITE_SAFE = 2`};
+enum class MCP251863_readMode_t { READ_NORMAL = 0, READ_CRC = 1};
+enum class MCP251873_command_t : uint8_t { 
     RESET = 0b000;
     READ = 0b0011;
     WRITE = 0b0010;
@@ -19,19 +19,37 @@ enum MCP251873_command_t : uint8_t {
     WRITE_SAFE = 0b1100;
 };
 
-enum MCP251873_opMode_t : uint {
-    CONFIG = 0,
-    NORM_CANFD = 1,
-    NORM_CAN2 = 2, 
-    SLEEP = 3,
-    LOW_P = 4,
-    LISTEN_ONLY = 5,
-    RESTR_OP = 6,
-    INT_LOOP = 7,
-    EXT_LOOP = 8
+enum class MCP251873_contMode_t : uint8_t {
+    CONFIG = 0b100,
+    CANFD_NORMAL = 0b000,
+    CAN2_NORMAL = 0b110, 
+    SLEEP = 0b001,
+    LISTEN_ONLY = 0b011,
+    RESTR_OP = 0b111,
+    INT_LOOP = 0b010,
+    EXT_LOOP = 0b101
 };
 
-enum MCP251873_regAddr_t : uint {
+enum class MCP251863_tranMode_t : uint {
+    STBY = 1,
+    NORMAL = 0;
+}
+
+enum class MCP251863_txfifoRetranMode_t : uint8_t {
+    NONE = 0b00;
+    THREE = 0b01;
+    UNLIM = 0b10;
+}
+
+enum class MCP251863_fifoIntMode_t : uint8_t {
+    N_TFULL_REMPTY = 0b00000001, //fifo not full (TX), fifo not empty (RX)
+    H_TFULL_REMPTY = 0b00000010, //fifo half full(TX), fifo half empty (RX)
+    TFULL_REMPTY = 0b00000100, //fifo full (TX), fifo empty (RX),
+    RXOV = 0b00001000, //fifo overflow (RX),
+    TXAT = 0b00010000, //transmits exhausted,
+}
+
+enum class MCP251863_regAddr_t : uint16_t {
     OSC = 0xE04,
     CRC = 0xE08,
     ECCCON = 0xE0C,
@@ -65,31 +83,65 @@ enum MCP251873_regAddr_t : uint {
     C1MASKx = 0x1F4 // 8 addresses between each
 };
 
+enum class MCP251863_fifoMode_t : uint8_t {
+    TXMODE = 1,
+    RXMODE = 0
+};
+
+enum class MCP251863_plSize_t : uint8_t {
+    BYTES_8 = 0b000,
+    BYTES_12 = 0b001,
+    BYTES_16 = 0b010,
+    BYTES_20 = 0b011,
+    BYTES_24 = 0b100,
+    BYTES_32 = 0b101,
+    BYTES_48 = 0b110,
+    BYTES_64 = 0b111,
+}
+
 //Debug methods
 
 //Main class
 class MCP251863 {
     private:
         spi_inst_t* spi;
-        uint CSPin;
+        uint CSPin, STBYPin;
         uint setCS(uint state);
         uint readAddr(uint16_t startAddr, uint8_t* dst, size_t len);
         uint writeAddr(uint16_t startAddr, uint8_t* data, size_t len);
 
-        int crc16USB(uint8_t message*, uint16_t crc, size_t len);
-        
-
     public:
         MCP251863_writeMode_t writeMode;
         MCP251863_readMode_t readMode;
-        MCP251863(spi_int_t* spi, uint CSPin);
+        MCP251863(spi_int_t* spi, uint CSPin, uint STBYPin);
+
         int init();
         int reset();
 
-        int initFIFO();
-        int initFilter()
+        int initGPFIFO(
+            uint8_t fifoNum, MCP251863_fifoMode_t fifoMode, 
+            MCP251863_plSize_t plSize, uint8_t fSize,
+            uint8_t prioNum, MCP251863_txfifoRetranMode_t retranMode,
+            MCP251863_fifoIntMode_t* intFlagArray, size_t intFlagSize
+        );
 
-        int setOpMode(MCP251863_OpMode_t opMode);
+        int initTEFIFO(
+            uint8_t fSize, 
+            MCP251863_fifoIntMode_t* intFlagArray, size_t intFlagSize
+        );
+
+        int initTXQ(
+            MCP251863_plSize_t plSize, uint8_t fSize,
+            uint8_t prioNum, MCP251863_txfifofRetranMode_t retranMode,
+            MCP251863_fifoIntMode_t intFlagArray, size_t intFlagSize
+        );
+
+        int loadTXFIFO();
+        int reqSendTXFIFO();
+
+        int setContMode(MCP251863_contMode_t mode);
+        int setTranMode(MCP251863_tranMode_t mode);
+
 
 }
 
