@@ -1,2 +1,8 @@
 build
+*.bin
+*.hex
+*.map
+*.hex
+*.dis
+*.uf2
 .vscode/*
