@@ -1,0 +1,37 @@
+rp2040-mcp251863/CMakeFiles/rp2040_mcp251863.dir/home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/pico_platform/platform.c.o: \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/pico_platform/platform.c \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/common/pico_base_headers/include/pico.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/common/pico_base_headers/include/pico/types.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/common/pico_base_headers/include/pico/assert.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/lib/gcc/arm-none-eabi/14.2.1/include/stdbool.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/assert.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/_ansi.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/newlib.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/_newlib_version.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/sys/config.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/machine/ieeefp.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/sys/features.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/lib/gcc/arm-none-eabi/14.2.1/include/stdint.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/stdint.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/machine/_default_types.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/sys/_intsup.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/sys/_stdint.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/lib/gcc/arm-none-eabi/14.2.1/include/stddef.h \
+ /home/pilot/Documents/CEV/SPI_2_CANFD/generated/pico_base/pico/version.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/common/pico_base_headers/include/pico/config.h \
+ /home/pilot/Documents/CEV/SPI_2_CANFD/generated/pico_base/pico/config_autogen.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/boards/include/boards/pico.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2_common/cmsis/include/cmsis/rename_exceptions.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/pico_platform/include/pico/platform.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_compiler/include/pico/platform/compiler.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/hardware_regs/include/hardware/platform_defs.h \
+ /home/pilot/.pico-sdk/toolchain/14_2_Rel1/arm-none-eabi/include/sys/cdefs.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/common/pico_base_headers/include/pico/types.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_sections/include/pico/platform/sections.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_panic/include/pico/platform/panic.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2_common/pico_platform_common/include/pico/platform/common.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/hardware_regs/include/hardware/regs/addressmap.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/hardware_regs/include/hardware/regs/sio.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/common/pico_base_headers/include/pico/error.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2_common/hardware_base/include/hardware/address_mapped.h \
+ /home/pilot/.pico-sdk/sdk/2.2.0/src/rp2040/hardware_regs/include/hardware/regs/sysinfo.h

@@ -23,7 +23,7 @@ if (EXISTS ${picoVscode})
     include(${picoVscode})
 endif()
 # ====================================================================================
-set(PICO_BOARD none CACHE STRING "Board type")
+set(PICO_BOARD pico CACHE STRING "Board type")
 
 # Pull in Raspberry Pi Pico SDK (must be before project)
 include(pico_sdk_import.cmake)
@@ -33,9 +33,13 @@ project(SPI_2_CANFD C CXX ASM)
 # Initialise the Raspberry Pi Pico SDK
 pico_sdk_init()
 
+# Add subdirectories
+add_subdirectory(pico-ssd1306)
+add_subdirectory(rp2040-mcp251863)
+
 # Add executable. Default name is the project name, version 0.1
 
-add_executable(SPI_2_CANFD SPI_2_CANFD.c )
+add_executable(SPI_2_CANFD SPI_2_CANFD.cpp )
 
 pico_set_program_name(SPI_2_CANFD "SPI_2_CANFD")
 pico_set_program_version(SPI_2_CANFD "0.1")
@@ -46,7 +50,12 @@ pico_enable_stdio_usb(SPI_2_CANFD 1)
 
 # Add the standard library to the build
 target_link_libraries(SPI_2_CANFD
-        pico_stdlib)
+        hardware_i2c
+        hardware_spi
+        pico_stdlib
+        pico_ssd1306
+        rp2040_mcp251863
+)
 
 # Add the standard include files to the build
 target_include_directories(SPI_2_CANFD PRIVATE
